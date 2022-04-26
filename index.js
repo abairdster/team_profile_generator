@@ -4,9 +4,9 @@
 // gather answers for file
 //us fs for team profile generator 
 //link output html to page creation 
-const inquire = require('inquirer');
+const inquirer = require('inquirer');
 const fs = require('fs');
-const generateHtml = require(`./util/generateHtml`);
+const generateHtml = require(`./develop/utils/generateHtml`);
 
 //team Profile packages needed fot this app
 const Manager = require(`./develop/library/Manager`);
@@ -204,7 +204,7 @@ const addEmployee = () => {
 
 // function to generate HTML page file using file system 
 const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
+    fs.writeFile('./output/team.html', data, err => {
         // if there is an error 
         if (err) {
             console.log(err);
@@ -219,7 +219,7 @@ const writeFile = data => {
 addManager()
   .then(addEmployee)
   .then(teamArray => {
-    return generateHTML(teamArray);
+    return generateHtml(teamArray);
   })
   .then(pageHTML => {
     return writeFile(pageHTML);
